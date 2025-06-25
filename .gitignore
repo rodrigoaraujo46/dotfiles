@@ -20,4 +20,4 @@
 !.config/picom/
 !.config/picom/**
 !.config/tmux/
-!.config/tmux/**
+!.config/tmux/tmux.conf
