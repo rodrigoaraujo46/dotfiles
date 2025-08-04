@@ -1,5 +1,5 @@
 *
-
+!.bashrc
 !.gitconfig
 !.gitignore
 !.scripts/
@@ -21,3 +21,4 @@
 !.config/picom/**
 !.config/tmux/
 !.config/tmux/tmux.conf
+!.config/starship.toml
