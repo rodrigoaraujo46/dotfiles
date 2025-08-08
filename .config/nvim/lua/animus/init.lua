@@ -1,6 +1,6 @@
-require("rax.set")
-require("rax.remap")
-require("rax.lazy_init")
+require("animus.set")
+require("animus.remap")
+require("animus.lazy_init")
 
 -- DO.not
 -- DO NOT INCLUDE THIS
@@ -14,7 +14,7 @@ require("rax.lazy_init")
 -- DO.not
 
 local augroup = vim.api.nvim_create_augroup
-local raxGroup = augroup('rax', {})
+local animusGroup = augroup('animus', {})
 
 local autocmd = vim.api.nvim_create_autocmd
 local yank_group = augroup('HighlightYank', {})
@@ -41,13 +41,13 @@ autocmd('TextYankPost', {
 })
 
 autocmd({ "BufWritePre" }, {
-    group = raxGroup,
+    group = animusGroup,
     pattern = "*",
     command = [[%s/\s\+$//e]],
 })
 
 autocmd('BufEnter', {
-    group = raxGroup,
+    group = animusGroup,
     callback = function()
         --[[
         if vim.bo.filetype == "zig" then
@@ -61,7 +61,7 @@ autocmd('BufEnter', {
 
 
 autocmd('LspAttach', {
-    group = raxGroup,
+    group = animusGroup,
     callback = function(e)
         local opts = { buffer = e.buf }
         vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
