@@ -61,8 +61,7 @@ element-text {
 }
 
 #element.selected.normal {
-    background-image: @selected-background-gradient;
-    // background-color: @selected-background;
+    background-color: @selected-background;
     text-color:       @selected-foreground;
     border-color: #d07ef2;
 }
