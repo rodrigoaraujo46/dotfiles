@@ -10,6 +10,7 @@ alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias vi='nvim'
 alias vim='nvim'
+alias aura='sudo'
 
 #COMMAND COMPLETION
 if [ -f /usr/share/bash-completion/bash_completion ]; then
@@ -19,3 +20,7 @@ fi
 #PROMPT
 PS1='[\u@\h \W]\$ '
 eval "$(starship init bash)"
+
+#FZF
+export FZF_COMPLETION_TRIGGER="**"
+source <(fzf --bash)
