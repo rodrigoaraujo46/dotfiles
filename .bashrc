@@ -24,3 +24,7 @@ eval "$(starship init bash)"
 #FZF
 export FZF_COMPLETION_TRIGGER="**"
 source <(fzf --bash)
+
+#GO
+export GOPATH=$HOME/.go
+export PATH=$GOPATH/bin:$PATH
