@@ -5,6 +5,9 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+export EDITOR=nvim
+export VISUAL=nvim
+
 #ALIASES
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
@@ -28,3 +31,4 @@ source <(fzf --bash)
 #GO
 export GOPATH=$HOME/.go
 export PATH=$GOPATH/bin:$PATH
+
