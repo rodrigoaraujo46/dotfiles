@@ -8,6 +8,8 @@
 export EDITOR=nvim
 export VISUAL=nvim
 
+export export PATH="$HOME/.local/bin:$PATH"
+
 #ALIASES
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
@@ -32,3 +34,5 @@ source <(fzf --bash)
 export GOPATH=$HOME/.go
 export PATH=$GOPATH/bin:$PATH
 
+#TMUX-SESSIONIZER
+bind -x '"\C-f": tmux-sessionizer'
