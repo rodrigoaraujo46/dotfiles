@@ -24,5 +24,6 @@
 !.config/starship.toml
 !.config/nushell/
 !.config/nushell/config.nu
+!.config/nushell/env.nu
 !.config/tmux-sessionizer/
 !.config/tmux-sessionizer/**

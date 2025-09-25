@@ -42,3 +42,5 @@ $env.PATH = ($env.PATH | split row (char esep) | prepend $env.PNPM_HOME )
 $env.MOZ_DISABLE_RDD_SANDBOX = 1
 $env.LIBVA_DRIVER_NAME = 'nvidia'
 $env.__EGL_VENDOR_LIBRARY_FILENAMES = '/usr/share/glvnd/egl_vendor.d/10_nvidia.json'
+
+source $"($nu.cache-dir)/carapace.nu"
