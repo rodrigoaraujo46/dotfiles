@@ -35,7 +35,7 @@ $env.config.keybindings ++= [{
 }]
 
 # PNPM
-$env.PNPM_HOME = $env.HOME + '.local/share/pnpm'
+$env.PNPM_HOME = $env.HOME + '/.local/share/pnpm'
 $env.PATH = ($env.PATH | split row (char esep) | prepend $env.PNPM_HOME )
 
 # NVIDIA VAAPI + EGL fixes
