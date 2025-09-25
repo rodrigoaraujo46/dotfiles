@@ -22,3 +22,7 @@
 !.config/tmux/
 !.config/tmux/tmux.conf
 !.config/starship.toml
+!.config/nushell/
+!.config/nushell/**
+!.config/tmux-sessionizer/
+!.config/tmux-sessionizer/**

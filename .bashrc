@@ -8,7 +8,7 @@
 export EDITOR=nvim
 export VISUAL=nvim
 
-export export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 
 #ALIASES
 alias ls='ls --color=auto'
