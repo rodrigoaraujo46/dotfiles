@@ -37,10 +37,14 @@ export PATH=$GOPATH/bin:$PATH
 #TMUX-SESSIONIZER
 bind -x '"\C-f": tmux-sessionizer'
 
-# pnpm
+# PNPM
 export PNPM_HOME="/home/animus/.local/share/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
-# pnpm end
+
+# NVIDIA VAAPI + EGL fixes
+export MOZ_DISABLE_RDD_SANDBOX=1
+export LIBVA_DRIVER_NAME=nvidia
+export __EGL_VENDOR_LIBRARY_FILENAMES=/usr/share/glvnd/egl_vendor.d/10_nvidia.json
