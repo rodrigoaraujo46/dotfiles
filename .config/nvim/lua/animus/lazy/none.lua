@@ -5,6 +5,7 @@ return {
 
         null_ls.setup({
             sources = {
+                null_ls.builtins.diagnostics.golangci_lint,
             },
         })
     end,
