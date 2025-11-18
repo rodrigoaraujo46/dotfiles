@@ -21,3 +21,6 @@ path add ($env.GOPATH | path join "bin")
 # Bun environment
 $env.BUN_INSTALL = ($env.HOME | path join ".bun")
 path add ($env.BUN_INSTALL | path join "bin")
+
+# Bob (neovim version manager)
+path add ($env.HOME | path join "/home/animus/.local/share/bob/nvim-bin")
