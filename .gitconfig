@@ -3,3 +3,5 @@
 	name = rodrigoaraujo46
 [init]
 	defaultBranch = main
+[url "git@github.com:rodrigoaraujo46/"]
+    insteadOf = me:
