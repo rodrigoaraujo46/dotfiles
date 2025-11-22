@@ -1,4 +1,6 @@
 *
+!.zshrc
+!.zsh_profile
 !.bashrc
 !.gitconfig
 !.gitignore
@@ -13,10 +15,6 @@
 !.config/waybar/**
 !.config/tmux/
 !.config/tmux/tmux.conf
-!.config/starship.toml
-!.config/nushell/
-!.config/nushell/config.nu
-!.config/nushell/env.nu
 !.tmux-sessionizer
 !.config/tmux-sessionizer/
 !.config/tmux-sessionizer/**

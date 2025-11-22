@@ -1,0 +1,30 @@
+#!bin/zsh
+export EDITOR="nvim"
+export VISUAL="nvim"
+export GOPATH="$HOME/.go"
+export BUN_INSTALL="$HOME/.bun"
+
+alias grep="grep --color=auto"
+alias vi="nvim"
+alias vim="nvim"
+alias aura="sudo"
+
+source <(fzf --zsh)
+
+bindkey -s ^f "tmux-sessionizer\n"
+
+addToPath() {
+    if [[ "$PATH" != *"$1"* ]]; then
+        export PATH=$PATH:$1
+    fi
+}
+
+addToPathFront() {
+    if [[ ! -z "$2" ]] || [[ "$PATH" != *"$1"* ]]; then
+        export PATH=$1:$PATH
+    fi
+}
+
+addToPathFront $HOME/.local/bin
+addToPathFront $GOPATH/bin
+addToPathFront $BUN_INSTALL/bin

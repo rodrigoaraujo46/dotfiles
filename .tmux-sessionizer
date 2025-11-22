@@ -1,10 +1,11 @@
-#!/usr/bin/env nu
+#!/bin/sh
 
-if $env.PWD == $env.HOME {
+if [ "$PWD" = "$HOME" ]; then
     clear
-    return
-}
+    exit 0
+fi
 
 tmux new-window -dn scratch
 vim .
 clear
+fastfetch
