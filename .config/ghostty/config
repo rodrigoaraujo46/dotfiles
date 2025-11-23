@@ -10,3 +10,6 @@ window-decoration = false
 window-padding-x = 20
 window-padding-y = 15
 window-padding-balance = true
+
+#CURSOR
+cursor-style = block

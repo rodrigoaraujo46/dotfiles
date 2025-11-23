@@ -4,6 +4,11 @@ export VISUAL="nvim"
 export GOPATH="$HOME/.go"
 export BUN_INSTALL="$HOME/.bun"
 
+KEYTIMEOUT=1 #VI MODE TIMEOUT BULLSHIT OTHERWISE ITS SLOW AS BRICKS
+VI_MODE_SET_CURSOR=true
+VI_MODE_CURSOR_VISUAL=2
+MODE_INDICATOR=""
+
 alias grep="grep --color=auto"
 alias vi="nvim"
 alias vim="nvim"
