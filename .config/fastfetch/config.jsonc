@@ -41,5 +41,8 @@
             "type": "colors",
             "symbol": "circle"
         },
+        {
+            "type": "break",
+        },
     ]
 }
