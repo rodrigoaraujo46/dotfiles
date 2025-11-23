@@ -1,4 +1,3 @@
-#!bin/zsh
 export EDITOR="nvim"
 export VISUAL="nvim"
 export GOPATH="$HOME/.go"
