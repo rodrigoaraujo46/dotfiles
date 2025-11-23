@@ -6,10 +6,11 @@ font-family = "JetBrainsMono Nerd Font"
 font-size = 19
 
 #WINDOW
-window-decoration = false
-window-padding-x = 20
-window-padding-y = 15
+window-decoration = none
+window-padding-x = 18
+window-padding-y = 9
 window-padding-balance = true
 
 #CURSOR
 cursor-style = block
+mouse-hide-while-typing = true
