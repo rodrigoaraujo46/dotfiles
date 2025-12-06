@@ -12,6 +12,7 @@ alias grep="grep --color=auto"
 alias vi="nvim"
 alias vim="nvim"
 alias aura="sudo"
+alias hypr="exec uwsm start hyprland-uwsm.desktop"
 
 source <(fzf --zsh)
 
