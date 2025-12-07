@@ -3,7 +3,7 @@ theme = "Rose Pine Moon"
 
 #FONT
 font-family = "JetBrainsMono Nerd Font"
-font-size = 19
+font-size = 18
 
 #WINDOW
 window-decoration = none
@@ -14,3 +14,14 @@ window-padding-balance = true
 #CURSOR
 cursor-style = block
 mouse-hide-while-typing = true
+
+#KEYS
+keybind = ctrl+d=scroll_page_fractional:0.5
+keybind = ctrl+u=scroll_page_fractional:-0.5
+keybind = ctrl+enter=unbind
+
+
+
+
+
+
