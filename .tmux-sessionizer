@@ -2,7 +2,7 @@
 
 if [ "$PWD" = "$HOME" ]; then
     clear
-    exit 0
+	return
 fi
 
 tmux new-window -dn scratch
