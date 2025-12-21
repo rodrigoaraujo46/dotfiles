@@ -33,3 +33,4 @@ addToPathFront() {
 addToPathFront $HOME/.local/bin
 addToPathFront $GOPATH/bin
 addToPathFront $BUN_INSTALL/bin
+addToPathFront $HOME/.config/composer/vendor/bin
