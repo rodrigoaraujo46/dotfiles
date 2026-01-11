@@ -8,6 +8,8 @@ font-style-bold = Bold
 font-style-italic = Retina
 font-style-bold-italic = Bold
 font-size = 18
+background = 000000
+background-opacity = 0.85
 
 #WINDOW
 window-decoration = none
