@@ -112,6 +112,9 @@ export FZF_DEFAULT_OPTS="
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+# bun completions
+[ -s "/home/animus/.bun/_bun" ] && source "/home/animus/.bun/_bun"
+
 source ~/.zsh_profile
 
 fastfetch

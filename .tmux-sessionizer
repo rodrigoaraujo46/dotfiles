@@ -6,6 +6,6 @@ if [ "$PWD" = "$HOME" ]; then
 fi
 
 tmux new-window -dn scratch
-vim .
+nvim .
 clear
 fastfetch
