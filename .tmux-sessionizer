@@ -1,0 +1,11 @@
+#!/bin/sh
+
+if [ "$PWD" = "$HOME" ]; then
+    clear
+	return
+fi
+
+tmux new-window -dn scratch
+nvim .
+clear
+fastfetch
