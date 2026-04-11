@@ -1,0 +1,26 @@
+vim.keymap.set('n', '<leader>pv', vim.cmd.Ex, { desc = 'Open file explorer' })
+vim.keymap.set('n', '<leader><leader>', function() vim.cmd('so') end, { desc = 'Source current file' })
+vim.keymap.set({ 'n', 'v' }, '<leader>f', vim.lsp.buf.format, { desc = 'Format current buffer' })
+vim.keymap.set({ 'n', 'v' }, '<leader>y', [["+y]], { desc = 'Yank to system clip' })
+vim.keymap.set('n', '<leader>Y', [["+Y]], { desc = 'Yank to system clip' })
+vim.keymap.set('v', '<leader>p', [["_dP]], { desc = 'Paste and keep' })
+vim.keymap.set({ 'n', 'v' }, '<leader>d', '\"_d', { desc = 'Delete and keep' })
+vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv", { desc = 'Move line up' })
+vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", { desc = 'Move line down' })
+vim.keymap.set('n', 'J', 'mzJ`z', { desc = 'Join but cursor stays' })
+vim.keymap.set('n', '<C-d>', '<C-d>zz', { desc = 'Down and center' })
+vim.keymap.set('n', '<C-u>', '<C-u>zz', { desc = 'Up and center' })
+vim.keymap.set('n', 'n', 'nzzzv', { desc = 'Match and center' })
+vim.keymap.set('n', 'N', 'Nzzzv', { desc = 'Previous match and center' })
+vim.keymap.set('i', '<C-c>', '<Esc>', { desc = 'Leave insert without interrupt' })
+vim.keymap.set('n', '<C-f>', '<cmd>silent !tmux neww tmux-sessionizer<CR>', { desc = 'Open tmux-sessionizer' })
+vim.keymap.set('n', '<leader>x', '<cmd>!chmod +x %<CR>', { silent = true, desc = 'Make file executable' })
+vim.keymap.set('n', '<leader>ee', 'oif err != nil {<CR>}<Esc>Oreturn err<Esc>', { desc = 'Golang error statement' })
+vim.keymap.set('n', '<leader>ea', 'oassert.NoError(err, \"\")<Esc>F\";a', { desc = 'Golang assert error' })
+vim.keymap.set('n', '<leader>u', ':Undotree<CR>', { desc = 'Toggle Undotree' })
+
+vim.keymap.set('n', '<leader>el', 'oif err != nil {<CR>}<Esc>O.logger.Error(\"error\", \"error\", err)<Esc>F.;i',
+	{ desc = 'Golang log error' })
+
+vim.keymap.set('n', '<leader>s', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
+	{ desc = 'Replace current word' })
