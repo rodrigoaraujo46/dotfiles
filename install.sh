@@ -31,7 +31,8 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$ZSH_CUSTOM"
 . .zshrc
 
 #HYPRLAND
-yay -S --needed elephant walker zen-browser-bin
+yay -S --needed elephant elephant-desktopapplications elephant-bluetooth elephant-runner walker zen-browser-bin
+elephant service enable && systemctl --user start elephant.service
 sudo pacman -S --needed ghostty waybar hyprpaper nwg-bar
 sudo pacman -S --needed uwsm libnewt
 sudo pacman -S --needed hyprland
@@ -49,3 +50,7 @@ yay -S --needed neovim-nightly-bin
 yay -S --needed dashbinsh
 
 sudo pacman -S --needed openssh
+sudo pacman -S --needed ttf-firacode-nerd
+sudo pacman -S --needed pavucontrol
+
+sudo pacman -S --needed bun
