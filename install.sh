@@ -54,3 +54,4 @@ sudo pacman -S --needed ttf-firacode-nerd
 sudo pacman -S --needed pavucontrol
 
 sudo pacman -S --needed bun
+sudo pacman -S --needed bat less man-pages man-db

@@ -13,4 +13,5 @@
 	prompt = false
 	trustExitCode = true
 [difftool]
+	prompt = false
 	trustExitCode = true
