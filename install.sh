@@ -6,18 +6,26 @@ fail() {
 	exit 1
 }
 
-installYAY() {
-	git clone https://aur.archlinux.org/yay-bin.git || fail "yay clone failed"
-	(cd yay-bin && makepkg -si) || {
-		rm -rf yay-bin
-		fail "yay build failed"
+setupPKGManagers() {
+	#Add color to pacman, specially usefull for paru, it will be able to properlly use bat
+	PACMAN_CONF=/etc/pacman.conf
+	[ -f "$PACMAN_CONF" ] && sudo sed -i 's/^#\s*Color/Color/' "$PACMAN_CONF"
+
+	#disable debug
+	MAKEPKG_CONF="/etc/makepkg.conf"
+	[ -f "$MAKEPKG_CONF" ] && sudo sed -i '/^OPTIONS=(/ s/\bdebug\b/!debug/' "$MAKEPKG_CONF"
+
+	git clone https://aur.archlinux.org/paru.git || fail "paru clone failed"
+	(cd paru && makepkg -si) || {
+		rm -rf paru
+		fail "paru build failed"
 	}
-	rm -rf yay-bin
+	rm -rf paru
 }
 
 installPackages() {
 	cat ./pacman.packages | sudo pacman -S --needed --noconfirm -
-	cat ./aur.packages | yay -S --noconfirm --needed --answerdiff None --answerclean None --provides=false -
+	cat ./aur.packages | paru -S --needed --noconfirm -
 }
 
 stowDots() {
@@ -95,7 +103,7 @@ promptReboot() {
 set -e
 sudo -v
 
-install_yay
+setupPKGManagers
 install_packages
 stowDots
 setupDrivers

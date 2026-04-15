@@ -76,6 +76,7 @@ useBinds() {
 runLogin() {
 	if [[ -o interactive ]]; then
 		fastfetch
+		echo -n "\e[1A"
 	fi
 }
 
