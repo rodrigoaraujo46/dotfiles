@@ -279,7 +279,7 @@
       <key>name</key>
       <string>Invalid</string>
       <key>scope</key>
-      <string>invalid</string>
+      <string>invalid, meta.annotation.error-line</string>
       <key>settings</key>
       <dict>
         <key>background</key>
@@ -290,11 +290,22 @@
         <string>#e0def4</string>
       </dict>
     </dict>
+	<dict>
+	  <key>name</key>
+	  <string>Error</string>
+	  <key>scope</key>
+	  <string>markup.error</string>
+	  <key>settings</key>
+	  <dict>
+	    <key>foreground</key>
+	    <string>#eb6f92</string>
+	  </dict>
+	</dict>
     <dict>
       <key>name</key>
       <string>Invalid deprecated</string>
       <key>scope</key>
-      <string>invalid.deprecated</string>
+      <string>invalid.deprecated, markup.warning</string>
       <key>settings</key>
       <dict>
         <key>background</key>

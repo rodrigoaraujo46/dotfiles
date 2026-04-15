@@ -1,15 +1,15 @@
 #COLORS
-theme = "Rose Pine Moon"
+theme = Rose Pine Moon
 
 #FONT
-font-family = "FiraCode Nerd Font"
+font-family = FiraCode Nerd Font
 font-style = Retina
 font-style-bold = Bold
 font-style-italic = Retina
 font-style-bold-italic = Bold
-font-size = 18
+font-size = 16
 background = black
-background-opacity = 0.9
+background-opacity = 0.87
 
 #WINDOW
 window-decoration = none

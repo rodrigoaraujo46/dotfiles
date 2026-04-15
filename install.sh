@@ -1,97 +1,103 @@
 #!/bin/sh
+#SCRIPTS ASSUMES YOU HAVE CLONED THE DOTFILES AND DIRECTORY IS DOTFILES
 
-#SCRIPTS ASSUMES YOU HAVE CLONED THE DOTFILES
-cd ~ || return
+fail() {
+	echo "Error: $1"
+	exit 1
+}
 
-#INSTALL AUR PM
-sudo pacman -S --needed git base-devel
-git clone https://aur.archlinux.org/yay-bin.git
-(cd yay-bin && makepkg -si)
-rm -rf yay-bin
+installYAY() {
+	git clone https://aur.archlinux.org/yay-bin.git || fail "yay clone failed"
+	(cd yay-bin && makepkg -si) || {
+		rm -rf yay-bin
+		fail "yay build failed"
+	}
+	rm -rf yay-bin
+}
 
-#STOW DOTFILES
-sudo pacman -S stow
+installPackages() {
+	cat ./pacman.packages | sudo pacman -S --needed --noconfirm -
+	cat ./aur.packages | yay -S --noconfirm --needed --answerdiff None --answerclean None --provides=false -
+}
 
-mkdir -p ~/.local/bin/ ~/.config/opencode ~/.config/tmux
-# shellcheck disable=2035 # stow blobs are strange
-(cd dotfiles && stow */)
+stowDots() {
+	mkdir -p "$HOME/.local/bin/" "$HOME/.config/opencode" "$HOME/.config/tmux"
+	# shellcheck disable=2035
+	stow */
+}
 
-#DRIVERS
-printf "Do you want to install NVIDIA open drivers? (y/N): "
-read -r install_choice
-case "$install_choice" in
-[yY][eE][sS] | [yY])
-	echo "Installing nvidia-open..."
-	sudo pacman -S --needed nvidia-open
-	;;
-*)
-	echo "Skipping NVIDIA driver installation."
-	;;
-esac
+setupDrivers() {
+	printf "Do you want to install NVIDIA open drivers? (y/N): "
+	read -r install_choice
+	case "$install_choice" in
+	[yY][eE][sS] | [yY])
+		echo "Installing nvidia-open..."
+		sudo pacman -S --needed nvidia-open
+		;;
+	*)
+		echo "Skipping Driver installation."
+		return
+		;;
+	esac
 
-printf "Do you want to configure hybrid graphics based on graphics.sh script? (y/N): "
-read -r hybrid_choice
+	printf "Do you want to configure hybrid graphics based on graphics.sh script? (y/N): "
+	read -r hybrid_choice
 
-case "$hybrid_choice" in
-[yY][eE][sS] | [yY])
-	# shellcheck disable=1091
-	. "$HOME/.local/bin/graphics.sh"
-	;;
-*)
-	echo "Hybrid configuration skipped."
-	;;
-esac
+	case "$hybrid_choice" in
+	[yY][eE][sS] | [yY])
+		# shellcheck disable=1091
+		. "$HOME/.local/bin/graphics.sh"
+		;;
+	*)
+		echo "Hybrid configuration skipped."
+		;;
+	esac
 
-echo ""
-echo "-----------------------------------------------------"
-echo "Verify export AQ_DRM_DEVICES"
-echo "Should be exported based on graphics.sh success"
-echo "File path: $HOME/.config/uwsm/env-hyprland"
-echo "File path: $HOME/.local/bin/graphics.sh"
-echo "-----------------------------------------------------"
+	echo ""
+	echo "-----------------------------------------------------"
+	echo "Verify export AQ_DRM_DEVICES"
+	echo "Should be exported based on graphics.sh success"
+	echo "File path: $HOME/.config/uwsm/env-hyprland"
+	echo "File path: $HOME/.local/bin/graphics.sh"
+	echo "-----------------------------------------------------"
+}
 
-#ZSH
-sudo pacman -S --needed zsh
-sudo pacman -S --needed fzf
-sudo pacman -S --needed fastfetch
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-git clone https://github.com/zsh-users/zsh-autosuggestions.git "$ZSH_CUSTOM"/plugins/zsh-autosuggestions
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$ZSH_CUSTOM"/plugins/zsh-syntax-highlighting
+handleAppSetup() {
+	#WALKER
+	elephant service enable
 
-#HYPRLAND
-yay -S --needed elephant elephant-desktopapplications elephant-bluetooth elephant-runner walker zen-browser-bin
-elephant service enable
-sudo pacman -S --needed ghostty waybar hyprpaper nwg-bar
-sudo pacman -S --needed uwsm libnewt
-sudo pacman -S --needed hyprland
+	#TMUX
+	(git clone https://github.com/tmux-plugins/tpm plugins/tpm "$HOME/.config/tmux/" && ./plugins/tpm/scripts/install_plugins.sh) || fail "Couldn't clone tmux tpm"
 
-#TMUX
-sudo pacman -S --needed tmux lazydocker
-(cd .config/tmux && git clone https://github.com/tmux-plugins/tpm plugins/tpm && ./plugins/tpm/scripts/install_plugins.sh)
+	#SPOTIFY
+	spicetify config spotify_path "$HOME/.local/share/spotify-launcher/install/usr/share/spotify"
+	mkdir -p "$HOME/.config/spicetify/Themes/"
+	git clone --depth=1 https://github.com/spicetify/spicetify-themes.git || fail "Failed to clone spicetify-themes.git"
+	cp -r ./spicetify-themes/* "$HOME/.config/spicetify/Themes"
+	sudo rm -rf ./spicetify-themes
+}
 
-#NVIM
-sudo pacman -S --needed opencode
-sudo pacman -S --needed nodejs npm go
-sudo pacman -S --needed ripgrep wl-clipboard fd wget unzip tree-sitter-cli
-yay -S --needed neovim-nightly-bin
+promptReboot() {
+	echo "'AFTER REBOOT YOU MIGHT WANT TO EDIT '/etc/conf.d/wireless-regdom' and uncomment your location"
+	printf "Want to reboot now? (y/N): "
+	read -r reboot
 
-yay -S --needed dashbinsh
+	case "$reboot" in
+	[yY][eE][sS] | [yY])
+		reboot
+		;;
+	*)
+		echo "Reboot to apply everything"
+		;;
+	esac
+}
 
-sudo pacman -S --needed openssh
-sudo pacman -S --needed ttf-firacode-nerd
-sudo pacman -S --needed pavucontrol
+set -e
+sudo -v
 
-sudo pacman -S --needed bun
-sudo pacman -S --needed bat less man-pages man-db
-
-printf "Want to reboot now? (y/N): "
-read -r reboot
-
-case "$reboot" in
-[yY][eE][sS] | [yY])
-	reboot
-	;;
-*)
-	echo "Reboot to apply everything"
-	;;
-esac
+install_yay
+install_packages
+stowDots
+setupDrivers
+handleAppSetup
+promptReboot
