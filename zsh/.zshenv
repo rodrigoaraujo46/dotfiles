@@ -23,3 +23,20 @@ addToPathFront $HOME/.local/bin
 addToPathFront /usr/local/bin
 addToPathFront $GOPATH/bin
 addToPathFront $BUN_INSTALL/bin
+
+fzf_preview() {
+	foam='\e[38;2;156;207;216m'
+	reset='\e[0m'
+
+	if [[ $1 =~ "\[TMUX\]" ]]; then
+		SESSION=$(echo "$1" | sed "s/\[TMUX] //")
+		printf "${foam}-------- [TMUX] $SESSION ----------${reset}\n"
+		tmux lsw -F $'#{?window_active,\e[38;2;246;193;119m,\e[38;2;196;167;231m} #{window_index} 󰧱 #{window_name}\e[0m'
+
+	elif [ -d "$1" ]; then
+		eza -1 -a --group-directories-first --icons=auto --color=always "$1"
+
+	else
+		bat --color=always --style=numbers "$1"
+	fi
+}

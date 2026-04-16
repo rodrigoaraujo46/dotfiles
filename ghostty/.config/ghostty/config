@@ -12,7 +12,7 @@ background-opacity = .4
 
 #WINDOW
 window-decoration = none
-window-padding-x = 18
+window-padding-x = 17
 window-padding-y = 9
 window-padding-balance = true
 scrollbar = never

@@ -9,11 +9,6 @@ useCompletions() {
 	autoload -U compinit && compinit
 	zmodload zsh/complist
 	_comp_options+=(globdots)
-
-	bindkey -M menuselect 'h' vi-backward-char
-	bindkey -M menuselect 'j' vi-down-line-or-history
-	bindkey -M menuselect 'k' vi-up-line-or-history
-	bindkey -M menuselect 'l' vi-forward-char
 }
 
 makeAliases() {
@@ -60,7 +55,7 @@ use3rdParty() {
 	--color=spinner:#f6c177,info:#9ccfd8
 	--color=pointer:#c4a7e7,marker:#eb6f92,prompt:#908caa
 	--height 50% --preview-window=right:50%
-	--preview 'if [ -d {} ]; then eza -1 -a --group-directories-first --icons=auto --color=always {} | head -200; else bat -p --color=always {}; fi'
+	--preview 'fzf_preview {}'
 	"
 	export FZF_CTRL_R_OPTS="--no-preview"
 
@@ -71,6 +66,11 @@ use3rdParty() {
 useBinds() {
 	source <(fzf --zsh)
 	bindkey -s ^f "^utmux-sessionizer\n"
+
+	bindkey -M menuselect 'h' vi-backward-char
+	bindkey -M menuselect 'j' vi-down-line-or-history
+	bindkey -M menuselect 'k' vi-up-line-or-history
+	bindkey -M menuselect 'l' vi-forward-char
 }
 
 runLogin() {

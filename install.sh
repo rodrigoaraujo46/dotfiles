@@ -9,9 +9,6 @@ fail() {
 setupPKGManagers() {
 	sudo pacman -S --noconfirm git base-devel
 	sudo pacman -S --asdeps --noconfirm cargo
-	#Add color to pacman, specially usefull for paru, it will be able to properlly use bat
-	PACMAN_CONF=/etc/pacman.conf
-	[ -f "$PACMAN_CONF" ] && sudo sed -i 's/^#\s*Color/Color/' "$PACMAN_CONF"
 
 	#disable debug
 	MAKEPKG_CONF="/etc/makepkg.conf"
@@ -34,6 +31,8 @@ stowDots() {
 	mkdir -p "$HOME/.local/bin/" "$XDG_CONFIG_HOME/opencode" "$XDG_CONFIG_HOME/tmux" "$XDG_CONFIG_HOME/zen"
 	# shellcheck disable=2035
 	stow */
+
+	chsh -s "$(which zsh)"
 }
 
 setupDrivers() {
@@ -41,8 +40,7 @@ setupDrivers() {
 	read -r install_choice
 	case "$install_choice" in
 	[yY][eE][sS] | [yY])
-		echo "Installing nvidia-open..."
-		sudo pacman -S --needed nvidia-open
+		echo "Installing nvidia-open..." sudo pacman -S --needed nvidia-open
 		;;
 	*)
 		echo "Skipping Driver installation."
@@ -88,15 +86,17 @@ handleAppSetup() {
 	git clone --depth=1 https://github.com/spicetify/spicetify-themes.git || fail "Failed to clone spicetify-themes.git"
 	cp -r ./spicetify-themes/* "$XDG_CONFIG_HOME/spicetify/Themes"
 	rm -rf ./spicetify-themes
+
+	#BAT
+	bat cache --build
 }
 
 promptReboot() {
-	echo "'AFTER REBOOT YOU MIGHT WANT TO EDIT '/etc/conf.d/wireless-regdom' and uncomment your location"
+	echo "AFTER REBOOT YOU MIGHT WANT TO EDIT '/etc/conf.d/wireless-regdom' and uncomment your location"
 	printf "Want to reboot now? (y/N): "
 	read -r reboot
 
-	case "$reboot" in
-	[yY][eE][sS] | [yY])
+	case "$reboot" in [yY][eE][sS] | [yY])
 		reboot
 		;;
 	*)
