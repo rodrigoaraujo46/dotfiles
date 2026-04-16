@@ -7,6 +7,8 @@ fail() {
 }
 
 setupPKGManagers() {
+	sudo pacman -S --noconfirm git base-devel
+	sudo pacman -S --asdeps --noconfirm cargo
 	#Add color to pacman, specially usefull for paru, it will be able to properlly use bat
 	PACMAN_CONF=/etc/pacman.conf
 	[ -f "$PACMAN_CONF" ] && sudo sed -i 's/^#\s*Color/Color/' "$PACMAN_CONF"
@@ -16,7 +18,7 @@ setupPKGManagers() {
 	[ -f "$MAKEPKG_CONF" ] && sudo sed -i '/^OPTIONS=(/ s/\bdebug\b/!debug/' "$MAKEPKG_CONF"
 
 	git clone https://aur.archlinux.org/paru.git || fail "paru clone failed"
-	(cd paru && makepkg -si) || {
+	(cd paru && makepkg -si --noconfirm) || {
 		rm -rf paru
 		fail "paru build failed"
 	}
@@ -25,11 +27,11 @@ setupPKGManagers() {
 
 installPackages() {
 	cat ./pacman.packages | sudo pacman -S --needed --noconfirm -
-	cat ./aur.packages | paru -S --needed --noconfirm -
+	cat ./aur.packages | paru -S --needed -
 }
 
 stowDots() {
-	mkdir -p "$HOME/.local/bin/" "$HOME/.config/opencode" "$HOME/.config/tmux"
+	mkdir -p "$HOME/.local/bin/" "$XDG_CONFIG_HOME/opencode" "$XDG_CONFIG_HOME/tmux" "$XDG_CONFIG_HOME/zen"
 	# shellcheck disable=2035
 	stow */
 }
@@ -54,7 +56,7 @@ setupDrivers() {
 	case "$hybrid_choice" in
 	[yY][eE][sS] | [yY])
 		# shellcheck disable=1091
-		. "$HOME/.local/bin/graphics.sh"
+		. ./graphics.sh
 		;;
 	*)
 		echo "Hybrid configuration skipped."
@@ -65,8 +67,7 @@ setupDrivers() {
 	echo "-----------------------------------------------------"
 	echo "Verify export AQ_DRM_DEVICES"
 	echo "Should be exported based on graphics.sh success"
-	echo "File path: $HOME/.config/uwsm/env-hyprland"
-	echo "File path: $HOME/.local/bin/graphics.sh"
+	echo "File path: $XDG_CONFIG_HOME/uwsm/env-hyprland"
 	echo "-----------------------------------------------------"
 }
 
@@ -75,14 +76,18 @@ handleAppSetup() {
 	elephant service enable
 
 	#TMUX
-	(git clone https://github.com/tmux-plugins/tpm plugins/tpm "$HOME/.config/tmux/" && ./plugins/tpm/scripts/install_plugins.sh) || fail "Couldn't clone tmux tpm"
+	mkdir -p "$XDG_CONFIG_HOME/tmux/plugins/"
+	{
+		git clone https://github.com/tmux-plugins/tpm "$XDG_CONFIG_HOME/tmux/plugins/tpm" &&
+			"$XDG_CONFIG_HOME/tmux/plugins/tpm/scripts/install_plugins.sh"
+	} || fail "Couldn't clone tmux tpm"
 
 	#SPOTIFY
-	spicetify config spotify_path "$HOME/.local/share/spotify-launcher/install/usr/share/spotify"
-	mkdir -p "$HOME/.config/spicetify/Themes/"
+	spicetify config spotify_path "$XDG_DATA_HOME/spotify-launcher/install/usr/share/spotify"
+	mkdir -p "$XDG_CONFIG_HOME/spicetify/Themes/"
 	git clone --depth=1 https://github.com/spicetify/spicetify-themes.git || fail "Failed to clone spicetify-themes.git"
-	cp -r ./spicetify-themes/* "$HOME/.config/spicetify/Themes"
-	sudo rm -rf ./spicetify-themes
+	cp -r ./spicetify-themes/* "$XDG_CONFIG_HOME/spicetify/Themes"
+	rm -rf ./spicetify-themes
 }
 
 promptReboot() {
@@ -100,11 +105,16 @@ promptReboot() {
 	esac
 }
 
+export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
+export XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
+export XDG_STATE_HOME="${XDG_STATE_HOME:-$HOME/.local/state}"
+export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
+
 set -e
 sudo -v
 
 setupPKGManagers
-install_packages
+installPackages
 stowDots
 setupDrivers
 handleAppSetup
