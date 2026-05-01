@@ -99,7 +99,7 @@ handleAppSetup() {
 	} || echo "Warning: tmux tpm failed"
 
 	#SPOTIFY
-	if command -v spicetify &>/dev/null; then
+	if command -v spicetify >/dev/null 2>&1; then
 		spicetify config spotify_path "$XDG_DATA_HOME/spotify-launcher/install/usr/share/spotify" 2>/dev/null || true
 		mkdir -p "$XDG_CONFIG_HOME/spicetify/Themes/"
 		{
@@ -112,17 +112,20 @@ handleAppSetup() {
 	fi
 
 	#BAT
-	if command -v bat &>/dev/null; then
+	if command -v bat >/dev/null 2>&1; then
 		bat cache --build || echo "Warning: bat cache failed"
 	else
 		echo "Warning: bat not installed, skipping"
 	fi
 
+	sudo systemctl enable --now docker.service || echo "Warning: docker.service not started, skipping"
+	sudo usermod -aG docker "$USER"
+
 	#NBFC-LINUX
 	nbfc_setup
 
 	#CPUFREQ
-	if command -v auto-cpufreq &>/dev/null; then
+	if command -v auto-cpufreq >/dev/null 2>&1; then
 		sudo auto-cpufreq --install || echo "Warning: auto-cpufreq install failed"
 	else
 		echo "Warning: auto-cpufreq not installed, skipping"

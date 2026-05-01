@@ -36,7 +36,10 @@ fzf_preview() {
 	elif [ -d "$1" ]; then
 		eza -1 -a --group-directories-first --icons=auto --color=always "$1"
 
-	else
-		bat --color=always --style=numbers "$1"
-	fi
+	elif [ -f "$1" ]; then
+        bat --color=always --style=numbers "$1"
+
+    else
+        echo "$1" | bat --color=always --style=plain -l txt
+    fi
 }

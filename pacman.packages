@@ -51,3 +51,6 @@ zsh-completions
 starship
 nwg-look
 hyprlock
+docker
+docker-compose
+ffmpeg
