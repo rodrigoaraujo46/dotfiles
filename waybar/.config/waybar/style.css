@@ -44,6 +44,8 @@ tooltip {
 	/*Default 5*/
 	/* rounded corners */
 	color: #c4a7e7;
+
+	border-radius: 14px;
 }
 
 /* extend empty space on both side of the bar,
@@ -73,7 +75,8 @@ tooltip {
 	/* fit with pill padding, 0px for not haveing duped vertical padding, 4px to make a square (4px value from module padding: ...#clock {padding >>4px<< 10px}) */
 	margin-left: 3px;
 	border: 1px solid transparent;
-	transition-property: background-color, border-left-color, border-right-color;
+	transition-property:
+		background-color, border-left-color, border-right-color;
 	transition-duration: 0.1s;
 	color: #c0caf5;
 }
@@ -88,12 +91,7 @@ tooltip {
 
 #workspaces button.active {
 	/* active workspace */
-	background: #56526e;
-}
-
-#workspaces button:hover {
-	background: #56526e;
-	/* hovered workspace color */
+	background: #393552;
 }
 
 #power-profiles-daemon {
