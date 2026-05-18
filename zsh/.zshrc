@@ -12,12 +12,23 @@ useCompletions() {
 }
 
 makeAliases() {
-	alias grep="grep --color=auto"
-	alias vi="nvim"
-	alias vim="nvim"
-	alias aura="sudo"
-	alias hypr="exec uwsm start hyprland-uwsm.desktop"
-	alias ls="eza -lh --group-directories-first --icons=auto"
+    alias ls='eza --grid --color=always --group-directories-first --icons'
+    alias lS='ls -1'
+    alias lt='ls -a --tree --level=2'
+
+    alias l='eza --long --header --git --color=always --group-directories-first --icons'
+    alias l.='l -d .*'
+    alias ll='l -a'
+	alias llm='eza --long --all --header --git --color=always --sort=modified --reverse --icons'
+
+	please() { sudo $(fc -ln -1) }
+
+    alias grep="grep --color=auto"
+    alias vi="nvim"
+    alias vim="nvim"
+    alias rm="rm -i"
+    alias cp="cp -i"
+    alias mv="mv -i"
 }
 
 usePlugins() {
