@@ -6,6 +6,23 @@ fail() {
 	exit 1
 }
 
+setupBoot() {
+	if ! sudo bootctl is-installed >/dev/null 2>&1; then
+		echo "Skipping systemd-boot configuration: systemd-boot is not installed or active."
+		return 0
+	fi
+
+	echo "Configuring systemd-boot options..."
+
+	sudo systemctl enable systemd-boot-update.service
+
+	sudo tee /boot/loader/loader.conf <<'EOF' >/dev/null
+timeout 0
+console-mode max
+editor no
+EOF
+}
+
 setupPKGManagers() {
 	sudo pacman -S --noconfirm git base-devel || fail "git/base-devel failed"
 	sudo pacman -S --asdeps --noconfirm cargo || fail "cargo install failed"
@@ -154,6 +171,7 @@ export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
 set -e
 sudo -v
 
+setupBoot
 setupPKGManagers
 installPackages
 stowDots
