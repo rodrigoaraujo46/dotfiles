@@ -5,7 +5,7 @@ local MONITORS = {
 
 local mirror = false
 
-local second_monitor = function()
+local function second_monitor()
 	hl.monitor({
 		output = "HDMI-A-1",
 		mode = "1920x1080@144",
@@ -14,7 +14,7 @@ local second_monitor = function()
 	})
 end
 
-local setup_workspaces = function()
+local function setup_workspaces()
 	for i = 1, 10 do
 		local target = i <= 5 and "HDMI-A-1" or "eDP-1"
 
@@ -26,7 +26,7 @@ local setup_workspaces = function()
 	end
 end
 
-local toggle_mirror = function()
+local function toggle_mirror()
 	mirror = not mirror
 	second_monitor()
 	setup_workspaces()
@@ -38,4 +38,4 @@ end
 second_monitor()
 setup_workspaces()
 
-_G.toggle_mirror = toggle_mirror
+MAIN_BIND("SHIFT + M", toggle_mirror)

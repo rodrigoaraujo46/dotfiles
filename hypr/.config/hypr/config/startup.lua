@@ -1,8 +1,4 @@
-local terminal = "ghostty"
-local menu = "walker"
-local power = "nwg-bar"
-
-local exec_uwsm = function(s)
+local function exec_uwsm(s)
 	hl.exec_cmd("uwsm app -- " .. s)
 end
 
@@ -13,9 +9,3 @@ hl.on("hyprland.start", function()
 	exec_uwsm("hyprpaper")
 	exec_uwsm("tmux")
 end)
-
-return {
-	terminal = terminal,
-	menu = menu,
-	power = power,
-}

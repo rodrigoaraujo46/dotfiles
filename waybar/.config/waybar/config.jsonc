@@ -15,7 +15,8 @@
 		"pulseaudio"
 	],
 	"hyprland/workspaces": {
-		"format": "<span size='small'>{icon}</span>"
+		"on-click": "activate",
+		"sort-by-number": true
 	},
 	"mpris": {
 		"format": "{player_icon}  {title} - {artist}",

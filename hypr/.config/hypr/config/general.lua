@@ -1,9 +1,6 @@
-local gap_out = 22
-local top_waybar = 16
-
 hl.config({
 	general = {
-		gaps_out = { top = top_waybar, left = gap_out, right = gap_out, bottom = gap_out },
+		gaps_out = 22,
 		gaps_in = 8,
 		border_size = 2,
 		col = {
@@ -47,9 +44,3 @@ hl.config({
 		new_status = "master",
 	},
 })
-
-return {
-	gap_out = gap_out,
-	top_waybar = top_waybar,
-}
-
