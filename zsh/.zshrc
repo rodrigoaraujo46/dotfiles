@@ -1,5 +1,8 @@
+# shellcheck shell=bash
+
 useHist() {
 	HISTSIZE=10000
+	# shellcheck disable=SC2034
 	SAVEHIST=10000
 	HISTFILE=$HOME/.zsh_history
 }
@@ -12,29 +15,35 @@ useCompletions() {
 }
 
 makeAliases() {
-    alias ls='eza --grid --color=always --group-directories-first --icons'
-    alias lS='ls -1'
-    alias lt='ls -a --tree --level=2'
+	alias ls='eza --grid --color=always --group-directories-first --icons'
+	alias lS='ls -1'
+	alias lt='ls -a --tree --level=2'
 
-    alias l='eza --long --header --git --color=always --group-directories-first --icons'
-    alias l.='l -d .*'
-    alias ll='l -a'
+	alias l='eza --long --header --git --color=always --group-directories-first --icons'
+	alias l.='l -d .*'
+	alias ll='l -a'
 	alias llm='eza --long --all --header --git --color=always --sort=modified --reverse --icons'
 
-	please() { sudo $(fc -ln -1) }
+	please() { sudo "$(fc -ln -1)"; }
+	clear() {
+		command clear
+		printf "\033[1A"
+	}
 
-    alias grep="grep --color=auto"
-    alias vi="nvim"
-    alias vim="nvim"
-    alias rm="rm -i"
-    alias cp="cp -i"
-    alias mv="mv -i"
+	alias grep="grep --color=auto"
+	alias vi="nvim"
+	alias vim="nvim"
+	alias rm="rm -i"
+	alias cp="cp -i"
+	alias mv="mv -i"
 }
 
+# shellcheck disable=SC1094
 usePlugins() {
 	source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 	source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+	# shellcheck disable=SC2034
 	zvm_config() {
 		ZVM_SYSTEM_CLIPBOARD_ENABLED=true
 		ZVM_INSERT_MODE_CURSOR=$ZVM_CURSOR_BEAM
@@ -45,9 +54,9 @@ usePlugins() {
 
 	zvm_after_select_vi_mode() {
 		case $ZVM_MODE in
-			$ZVM_MODE_NORMAL)
-				echo -ne "\e[2 q"
-				;;
+		"$ZVM_MODE_NORMAL")
+			echo -ne "\e[2 q"
+			;;
 		esac
 	}
 
@@ -75,6 +84,7 @@ use3rdParty() {
 }
 
 useBinds() {
+	#shellcheck disable=SC1090
 	source <(fzf --zsh)
 	bindkey -s ^f "^utmux-sessionizer\n"
 
@@ -87,7 +97,7 @@ useBinds() {
 runLogin() {
 	if [[ -o interactive ]]; then
 		fastfetch
-		echo -n "\e[1A"
+		printf "\e[1A"
 	fi
 }
 
