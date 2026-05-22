@@ -1,5 +1,7 @@
-local function exec_uwsm(s)
-	hl.exec_cmd("uwsm app -- " .. s)
+---@param cmd string
+---@param rules? table<string, string|number|boolean>
+local function exec_uwsm(cmd, rules)
+	hl.exec_cmd("uwsm app -- " .. cmd, rules)
 end
 
 hl.on("hyprland.start", function()
@@ -8,4 +10,7 @@ hl.on("hyprland.start", function()
 	exec_uwsm("waybar")
 	exec_uwsm("hyprpaper")
 	exec_uwsm("tmux")
+	exec_uwsm("ghostty", { workspace = "1 silent" })
+	exec_uwsm("spotify-launcher", { workspace = "2 silent" })
+	exec_uwsm("zen-browser", { workspace = "3 silent" })
 end)

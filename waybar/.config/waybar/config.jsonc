@@ -15,7 +15,13 @@
 	],
 	"hyprland/workspaces": {
 		"on-click": "activate",
-		"sort-by-number": true
+		"sort-by-number": true,
+		"format": "{icon}",
+		"format-icons": {
+			"1": "󰊠",
+			"2": "󰓇",
+			"3": "󰈹"
+		}
 	},
 	"mpris": {
 		"format": "{player_icon}  {title} - {artist}",

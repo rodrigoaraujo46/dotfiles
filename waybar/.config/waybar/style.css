@@ -40,11 +40,9 @@ tooltip {
 	/* extend pill size, vertical then horizontal */
 	box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.185);
 	/* pill background shadows */
-	border-radius: 50px;
-	/*Default 5*/
-	/* rounded corners */
 	color: #c4a7e7;
 
+	/* rounded corners */
 	border-radius: 14px;
 }
 
@@ -83,6 +81,11 @@ tooltip {
 
 #workspaces button:first-child {
 	margin-left: 0;
+}
+
+#workspaces button label {
+	padding: 0px 4px 0px 2px;
+	margin: 0;
 }
 
 #workspaces button {

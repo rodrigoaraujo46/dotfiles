@@ -33,3 +33,4 @@ Scan the root directory filenames and file paths:
 - Do not wrap the output in markdown code blocks (```) or backticks.
 - Zero fluff, zero conversational filler, and zero explanations. Just the string.
 - DO NOT ATTEMPT TO EXECUTE ANY COMMANDS. You do not have access to a terminal, shell, or git execution layer. Your entire universe ends with outputting the string to stdout. Do not write or suggest any `git commit -m` commands.
+- NEVER execute "git commit", THIS SKILL ALWAYS RETURNS THE COMMIT STRING, NOTHING MORE NOTHING LESS, ANY ATTEMPT AT COMMITING WILL LEAD TO TERMINATION
