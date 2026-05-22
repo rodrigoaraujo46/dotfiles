@@ -35,9 +35,9 @@
 		"player-icons": {
 			"default": "󰎈",
 			"mpv": "",
-			"vlc": "<span color='#E85E00'>󰕼</span>",
-			"spotify": "<span color='#1DB954'></span>",
-			"brave": "<span font='normal Font Awesome 6 Free' color='#ed7009'></span>"
+			"vlc": "󰕼",
+			"spotify": "",
+			"firefox": "󰎈"
 		},
 		"status-icons": {
 			"paused": "⏸",
