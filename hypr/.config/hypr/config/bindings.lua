@@ -24,6 +24,17 @@ MAIN_BIND("T", hl.dsp.layout("togglesplit"))
 
 MAIN_BIND("W", hl.dsp.exec_cmd("killall -SIGUSR1 waybar"))
 
+hl.bind("ALT + T", function()
+	local focused = hl.get_active_window()
+	if focused and focused.class and focused.class:find("zen") then
+		hl.dispatch(hl.dsp.send_shortcut({ mods = "CTRL", key = "l" }))
+		hl.timer(function()
+			hl.dispatch(hl.dsp.send_shortcut({ mods = "SHIFT", key = "5" }))
+			hl.dispatch(hl.dsp.send_shortcut({ key = "space" }))
+		end, { type = "oneshot", timeout = 50 })
+	end
+end)
+
 MAIN_BIND("H", hl.dsp.focus({ direction = "left" }))
 MAIN_BIND("L", hl.dsp.focus({ direction = "right" }))
 MAIN_BIND("K", hl.dsp.focus({ direction = "up" }))
