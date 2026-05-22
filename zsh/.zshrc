@@ -30,6 +30,36 @@ makeAliases() {
 		printf "\033[1A"
 	}
 
+	vibecommit() {
+		echo "OpenCode is vibing the commit..."
+
+		diff=$(git diff --cached)
+		if [ -z "$diff" ]; then
+			echo "Nothing staged! Stage your changes first with 'git add'."
+			return 1
+		fi
+
+		msg=$(opencode run "vibecommit with this diff $diff")
+
+		if [ -z "$msg" ]; then
+			echo "Failed to generate a commit message."
+			return 1
+		fi
+
+		echo -e "\nProposed Commit Message:"
+		echo -e "------------------------"
+		echo -e "\033[1;32m$msg\033[0m"
+		echo -e "------------------------\n"
+
+		if read -rq "choice?Confirm and commit? (y/n): "; then
+			echo -e "\n\nCommitting..."
+			git commit -m "$msg"
+		else
+			echo -e "\n\nCommit aborted."
+			return 1
+		fi
+	}
+
 	alias grep="grep --color=auto"
 	alias vi="nvim"
 	alias vim="nvim"

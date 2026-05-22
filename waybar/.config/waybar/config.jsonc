@@ -1,8 +1,7 @@
 {
-	"layer": "top",
 	"margin-left": 20,
 	"margin-right": 20,
-	"height": 46,
+	"height": 45,
 	"reload_style_on_change": true,
 	"modules-left": ["hyprland/workspaces", "mpris"],
 	"modules-center": ["clock"],

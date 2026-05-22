@@ -26,3 +26,13 @@ hl.window_rule({
 	move = "20 monitor_h-120",
 	float = true,
 })
+
+hl.window_rule({
+	match = {
+		title = "^Picture-in-Picture$",
+	},
+	float = true,
+	pin = true,
+	size = { "window_h*16/9", "300" },
+	move = { "monitor_w-window_w-5", "5" },
+})
