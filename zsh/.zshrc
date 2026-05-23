@@ -39,7 +39,7 @@ makeAliases() {
 			return 1
 		fi
 
-		msg=$(opencode run "vibecommit with this diff $diff; YOU WILL NOT COMMIT THIS THIS WITH GIT, YOU WILL ONLY RETURN THE COMMIT MESSAGE" 2>/dev/null)
+		msg=$(opencode run "vibecommit this diff $diff")
 
 		if [ -z "$msg" ]; then
 			echo "Failed to generate a commit message."
