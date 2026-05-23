@@ -33,13 +33,13 @@ makeAliases() {
 	vibecommit() {
 		echo "OpenCode is vibing the commit..."
 
-		diff=$(git diff --cached)
+		diff=$(git diff --cached 2>/dev/null)
 		if [ -z "$diff" ]; then
 			echo "Nothing staged! Stage your changes first with 'git add'."
 			return 1
 		fi
 
-		msg=$(opencode run "vibecommit this diff $diff")
+		msg=$(opencode run "vibecommit using this diff $diff" 2>/dev/null)
 
 		if [ -z "$msg" ]; then
 			echo "Failed to generate a commit message."
