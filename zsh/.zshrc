@@ -15,14 +15,14 @@ useCompletions() {
 }
 
 makeAliases() {
-	alias ls='eza --grid --color=always --group-directories-first --icons'
+	alias ls='eza --grid --color=always --icons --group-directories-first'
 	alias lS='ls -1'
 	alias lt='ls -a --tree --level=2'
 
-	alias l='eza --long --header --git --color=always --group-directories-first --icons'
+	alias l='eza --long --header --git --color=always --icons --group-directories-first'
 	alias l.='l -d .*'
 	alias ll='l -a'
-	alias llm='eza --long --all --header --git --color=always --sort=modified --reverse --icons'
+	alias llm='eza --long --all --header --git --color=always --sort=modified --icons --reverse'
 
 	please() { sudo "$(fc -ln -1)"; }
 	clear() {
