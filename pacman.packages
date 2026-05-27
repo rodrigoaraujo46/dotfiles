@@ -56,3 +56,4 @@ docker-compose
 ffmpeg
 xdg-utils
 trash-cli
+mako

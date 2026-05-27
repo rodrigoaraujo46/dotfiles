@@ -1,0 +1,28 @@
+anchor=top-right
+group-by=app-name,summary,body
+default-timeout=5000
+width=420
+outer-margin=20
+padding=10,15
+border-size=2
+max-icon-size=32
+background-color=#393552
+border-radius=8
+text-color=#e0def4
+border-color=#56526e
+progress-color=over #3e8fb0
+font=FiraCode Nerd Font 16px
+
+[app-name=Spotify]
+invisible=1
+
+[mode=do-not-disturb]
+invisible=true
+
+[mode=do-not-disturb app-name=notify-send]
+invisible=false
+
+[urgency=critical]
+default-timeout=0
+layer=overlay
+border-color=#eb6f92
