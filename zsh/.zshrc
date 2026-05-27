@@ -24,7 +24,12 @@ makeAliases() {
 	alias ll='l -a'
 	alias llm='eza --long --all --header --git --color=always --sort=modified --icons --reverse'
 
-	please() { sudo "$(fc -ln -1)"; }
+	fuck() {
+		local cmd_array
+		read -rA cmd_array <<<"$(fc -ln -1)"
+		sudo "${cmd_array[@]}"
+	}
+
 	clear() {
 		command clear
 		printf "\033[1A"
@@ -79,7 +84,6 @@ usePlugins() {
 		ZVM_INSERT_MODE_CURSOR=$ZVM_CURSOR_BEAM
 		ZVM_NORMAL_MODE_CURSOR=$ZVM_CURSOR_BLOCK
 		ZVM_OPPEND_MODE_CURSOR=$ZVM_CURSOR_UNDERLINE
-
 	}
 
 	zvm_after_select_vi_mode() {
