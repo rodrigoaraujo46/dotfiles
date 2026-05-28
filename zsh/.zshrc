@@ -23,6 +23,9 @@ makeAliases() {
 	alias l.='l -d .*'
 	alias ll='l -a'
 	alias llm='eza --long --all --header --git --color=always --sort=modified --icons --reverse'
+	alias -g -- -h='-h 2>&1 | bat -plhelp'
+	alias -g -- --help='--help 2>&1 | bat -plhelp'
+	alias -g help='help 2>&1 | bat -plhelp'
 
 	fuck() {
 		local cmd_array
