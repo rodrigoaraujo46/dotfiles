@@ -135,7 +135,7 @@ handleAppSetup() {
 		echo "Warning: bat not installed, skipping"
 	fi
 
-	sudo systemctl enable --now docker.service || echo "Warning: docker.service not started, skipping"
+	sudo systemctl enable --now docker.socket || echo "Warning: docker.socket not enabled, skipping"
 	sudo usermod -aG docker "$USER"
 
 	#NBFC-LINUX
