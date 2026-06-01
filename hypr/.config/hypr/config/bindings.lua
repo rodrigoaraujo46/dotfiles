@@ -22,6 +22,12 @@ MAIN_BIND("F", hl.dsp.window.fullscreen({ action = "toggle" }))
 MAIN_BIND("P", hl.dsp.window.pseudo())
 MAIN_BIND("T", hl.dsp.layout("togglesplit"))
 
+MAIN_BIND("SHIFT + P", function()
+	hl.dsp.exec_cmd("mkdir -p ~/Pictures/Screenshots")
+	hl.dsp.exec_cmd('grim -g "$(slurp)" ~/Pictures/Screenshots/$(date +%Y-%m-%d_%H%M%S).png')
+end)
+MAIN_BIND("SHIFT + Y", hl.dsp.exec_cmd('grim -g "$(slurp -d)" - | wl-copy'))
+
 MAIN_BIND("W", hl.dsp.exec_cmd("killall -SIGUSR1 waybar"))
 
 --Zen fuzzy tab switcher
