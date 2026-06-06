@@ -6,28 +6,15 @@ hl.config({
 		col = {
 			active_border = "#c4a7e7",
 		},
-		resize_on_border = false,
-		allow_tearing = false,
-		layout = "dwindle",
+		resize_on_border = true,
 	},
 
 	decoration = {
 		rounding = 14,
 		rounding_power = 3,
 
-		shadow = {
-			enabled = true,
-			range = 4,
-			render_power = 3,
-			color = "rgba(1a1a1aee)",
-		},
-
 		blur = {
-			enabled = true,
-			size = 6,
-			ignore_opacity = true,
-			passes = 5,
-			noise = 0.01,
+			passes = 4,
 		},
 	},
 
@@ -40,7 +27,5 @@ hl.config({
 		preserve_split = true,
 	},
 
-	master = {
-		new_status = "master",
-	},
+	input = { kb_options = "compose:caps" },
 })

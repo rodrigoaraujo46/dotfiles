@@ -5,11 +5,10 @@ local function exec_uwsm(cmd, rules)
 end
 
 hl.on("hyprland.start", function()
-	exec_uwsm("ghostty --gtk-single-instance=true --quit-after-last-window-closed=false --initial-window=false")
+	exec_uwsm("ghostty --quit-after-last-window-closed=false --initial-window=false")
 	exec_uwsm("walker --gapplication-service")
 	exec_uwsm("waybar")
 	exec_uwsm("hyprpaper")
-	exec_uwsm("tmux")
 	exec_uwsm("mako")
 	exec_uwsm("ghostty", { workspace = "1 silent" })
 	exec_uwsm("spotify-launcher", { workspace = "2 silent" })

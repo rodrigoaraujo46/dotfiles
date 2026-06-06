@@ -8,18 +8,11 @@ end
 
 MAIN_BIND("Q", hl.dsp.exec_cmd(TERMINAL))
 MAIN_BIND("C", hl.dsp.window.close())
-
-MAIN_BIND("M", function()
-	hl.dispatch(hl.dsp.window.float({ action = "toggle" }))
-	hl.dispatch(hl.dsp.window.resize({ x = 1400, y = 800 }))
-	hl.dispatch(hl.dsp.window.center())
-end)
-
+MAIN_BIND("M", hl.dsp.window.center())
 MAIN_BIND("E", hl.dsp.exec_cmd(POWER))
 MAIN_BIND("V", hl.dsp.window.float({ action = "toggle" }))
 MAIN_BIND("R", hl.dsp.exec_cmd(MENU))
 MAIN_BIND("F", hl.dsp.window.fullscreen({ action = "toggle" }))
-MAIN_BIND("P", hl.dsp.window.pseudo())
 MAIN_BIND("T", hl.dsp.layout("togglesplit"))
 
 MAIN_BIND("SHIFT + P", function()
@@ -42,10 +35,15 @@ hl.bind("ALT + T", function()
 	end
 end)
 
-MAIN_BIND("H", hl.dsp.focus({ direction = "left" }))
-MAIN_BIND("L", hl.dsp.focus({ direction = "right" }))
 MAIN_BIND("K", hl.dsp.focus({ direction = "up" }))
+MAIN_BIND("L", hl.dsp.focus({ direction = "right" }))
 MAIN_BIND("J", hl.dsp.focus({ direction = "down" }))
+MAIN_BIND("H", hl.dsp.focus({ direction = "left" }))
+
+MAIN_BIND("SHIFT+K", hl.dsp.window.move({ direction = "up" }))
+MAIN_BIND("SHIFT+L", hl.dsp.window.move({ direction = "right" }))
+MAIN_BIND("SHIFT+J", hl.dsp.window.move({ direction = "down" }))
+MAIN_BIND("SHIFT+H", hl.dsp.window.move({ direction = "left" }))
 
 for i = 1, 10 do
 	local key = i % 10
@@ -54,9 +52,7 @@ for i = 1, 10 do
 end
 
 MAIN_BIND("mouse:272", hl.dsp.window.drag(), { mouse = true })
-MAIN_BIND("mouse:273", hl.dsp.window.resize(), { mouse = true })
 
-hl.bind("XF86MenuKB", hl.dsp.exec_cmd("hyprctl switchxkblayout current next"))
 hl.bind(
 	"XF86AudioRaiseVolume",
 	hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"),

@@ -105,6 +105,8 @@ nbfc_setup() {
 }
 
 handleAppSetup() {
+	#POLKIT
+	systemctl --user enable --now hyprpolkitagent.service || echo "Warning: hyprpolkit.service failed to enable"
 	#WALKER
 	elephant service enable || echo "Warning: elephant failed"
 
