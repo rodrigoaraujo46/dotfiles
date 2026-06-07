@@ -105,6 +105,7 @@ nbfc_setup() {
 }
 
 handleAppSetup() {
+	systemctl enable --now paccache.timer
 	#POLKIT
 	systemctl --user enable --now hyprpolkitagent.service || echo "Warning: hyprpolkit.service failed to enable"
 	#WALKER

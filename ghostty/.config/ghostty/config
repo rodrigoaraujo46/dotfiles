@@ -1,24 +1,23 @@
 #COLORS
 theme = Rose Pine Moon
+background-opacity = .4
 
 #FONT
+font-size = 16
 font-family = FiraCode Nerd Font
+window-title-font-family = FiraCode Nerd Font
 font-style = Retina
 font-style-bold = Bold
 font-style-italic = Retina
 font-style-bold-italic = Bold
-font-size = 16
-background-opacity = .4
 
 #WINDOW
-window-decoration = none
 window-padding-x = 17
 window-padding-y = 9
 window-padding-balance = true
 scrollbar = never
 
-#CURSOR
-cursor-style = block
+#MISC
 mouse-hide-while-typing = true
 
 #KEYS
