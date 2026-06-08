@@ -1,3 +1,3 @@
 TERMINAL = "ghostty"
-MENU = "walker"
-POWER = "nwg-bar"
+MENU = "nc -U /run/user/1000/walker/walker.sock"
+POWER = "walker -m menus:power"

@@ -1,0 +1,23 @@
+name = "power"
+name_pretty = "Power"
+icon = "system-shutdown-symbolic"
+
+[[entries]]
+text = "Lock"
+icon = "system-lock-screen-symbolic"
+actions = { "lock" = "hyprlock" }
+
+[[entries]]
+text = "Logout"
+icon = "system-log-out-symbolic"
+actions = { "logout" = "uwsm stop" }
+
+[[entries]]
+text = "Reboot"
+icon = "system-reboot-symbolic"
+actions = { "reboot" = "systemctl reboot" }
+
+[[entries]]
+text = "Shutdown"
+icon = "system-shutdown-symbolic"
+actions = { "shutdown" = "systemctl poweroff" }
