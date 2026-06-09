@@ -1,5 +1,5 @@
 # shellcheck shell=bash
 
-if [[ -z "$DISPLAY" && -z "$WAYLAND_DISPLAY" && "$XDG_VTNR" -eq 1 ]]; then
+if uwsm check may-start; then
 	exec uwsm start hyprland-uwsm.desktop
 fi
