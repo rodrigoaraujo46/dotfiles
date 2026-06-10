@@ -1,16 +1,19 @@
 ---@param cmd string
 ---@param rules? table<string, string|number|boolean>
-local function exec_uwsm(cmd, rules)
-	hl.exec_cmd("uwsm-app -- " .. cmd, rules)
+local function uwsm_scope(cmd, rules)
+	hl.exec_cmd("uwsm-app --" .. cmd, rules)
+end
+
+local function uwsm_service(cmd, rules)
+	hl.exec_cmd("uwsm-app -t service --" .. cmd, rules)
 end
 
 hl.on("hyprland.start", function()
-	exec_uwsm("ghostty --quit-after-last-window-closed=false --initial-window=false")
-	exec_uwsm("walker --gapplication-service")
-	exec_uwsm("waybar")
-	exec_uwsm("hyprpaper")
-	exec_uwsm("mako")
-	hl.exec_cmd("ghostty", { workspace = "1 silent" })
-	exec_uwsm("spotify-launcher", { workspace = "2 silent" })
-	exec_uwsm("zen-browser", { workspace = "3 silent" })
+	uwsm_service("waybar")
+	uwsm_service("walker --gapplication-service")
+	uwsm_service("mako")
+	uwsm_service("hyprpaper")
+	uwsm_scope("ghostty --quit-after-last-window-closed=false", { workspace = "1 silent" })
+	uwsm_scope("spotify-launcher", { workspace = "2 silent" })
+	uwsm_scope("zen-browser", { workspace = "3 silent" })
 end)

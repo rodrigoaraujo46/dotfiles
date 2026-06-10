@@ -1,16 +1,12 @@
----@param keys string
----@param dispatcher HL.Dispatcher|function
----@param opts? HL.BindOptions
----@return HL.Keybind
-function MAIN_BIND(keys, dispatcher, opts)
-	return hl.bind("SUPER + " .. keys, dispatcher, opts)
-end
-
 MAIN_BIND("Q", hl.dsp.exec_cmd(TERMINAL))
 MAIN_BIND("E", hl.dsp.exec_cmd(POWER))
 MAIN_BIND("R", hl.dsp.exec_cmd(MENU))
 MAIN_BIND("C", hl.dsp.window.close())
-MAIN_BIND("M", hl.dsp.window.center())
+MAIN_BIND("M", function()
+	DSP(hl.dsp.window.float({ action = "on" }))
+	DSP(hl.dsp.window.resize({ x = 1280, y = 720 }))
+	DSP(hl.dsp.window.center())
+end)
 MAIN_BIND("V", hl.dsp.window.float({ action = "toggle" }))
 MAIN_BIND("F", hl.dsp.window.fullscreen({ action = "toggle" }))
 MAIN_BIND("T", hl.dsp.layout("togglesplit"))
@@ -27,10 +23,10 @@ MAIN_BIND("W", hl.dsp.exec_cmd("killall -SIGUSR1 waybar"))
 hl.bind("ALT + T", function()
 	local focused = hl.get_active_window()
 	if focused and focused.class and focused.class:find("zen") then
-		hl.dispatch(hl.dsp.send_shortcut({ mods = "CTRL", key = "L" }))
+		DSP(hl.dsp.send_shortcut({ mods = "CTRL", key = "L" }))
 		hl.timer(function()
-			hl.dispatch(hl.dsp.send_shortcut({ mods = "SHIFT", key = "5" }))
-			hl.dispatch(hl.dsp.send_shortcut({ mods = "", key = "SPACE" }))
+			DSP(hl.dsp.send_shortcut({ mods = "SHIFT", key = "5" }))
+			DSP(hl.dsp.send_shortcut({ mods = "", key = "SPACE" }))
 		end, { type = "oneshot", timeout = 50 })
 	end
 end)
@@ -40,10 +36,10 @@ MAIN_BIND("L", hl.dsp.focus({ direction = "right" }))
 MAIN_BIND("J", hl.dsp.focus({ direction = "down" }))
 MAIN_BIND("H", hl.dsp.focus({ direction = "left" }))
 
-MAIN_BIND("SHIFT+K", hl.dsp.window.move({ direction = "up" }))
-MAIN_BIND("SHIFT+L", hl.dsp.window.move({ direction = "right" }))
-MAIN_BIND("SHIFT+J", hl.dsp.window.move({ direction = "down" }))
-MAIN_BIND("SHIFT+H", hl.dsp.window.move({ direction = "left" }))
+MAIN_BIND("SHIFT + K", hl.dsp.window.move({ direction = "up" }))
+MAIN_BIND("SHIFT + L", hl.dsp.window.move({ direction = "right" }))
+MAIN_BIND("SHIFT + J", hl.dsp.window.move({ direction = "down" }))
+MAIN_BIND("SHIFT + H", hl.dsp.window.move({ direction = "left" }))
 
 for i = 1, 10 do
 	local key = i % 10

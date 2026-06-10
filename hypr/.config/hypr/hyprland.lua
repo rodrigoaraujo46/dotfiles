@@ -1,4 +1,4 @@
-require("config.globals")
+require("config.shared")
 require("config.startup")
 require("config.general")
 require("config.animations")
