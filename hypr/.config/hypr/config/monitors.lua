@@ -12,7 +12,7 @@ end
 
 local function setup_workspaces()
 	for i = 1, 10 do
-		local target = mirror and "eDP-1" or (i <= 5 and "HDMI-A-1" or "eDP-1")
+		local target = i <= 5 and "HDMI-A-1" or "eDP-1"
 
 		hl.workspace_rule({ monitor = target, workspace = tostring(i) })
 

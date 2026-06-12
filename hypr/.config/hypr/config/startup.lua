@@ -1,11 +1,11 @@
 ---@param cmd string
 ---@param rules? table<string, string|number|boolean>
 local function uwsm_scope(cmd, rules)
-	hl.exec_cmd("uwsm-app --" .. cmd, rules)
+	hl.exec_cmd("uwsm-app -- " .. cmd, rules)
 end
 
 local function uwsm_service(cmd, rules)
-	hl.exec_cmd("uwsm-app -t service --" .. cmd, rules)
+	hl.exec_cmd("uwsm-app -t service -- " .. cmd, rules)
 end
 
 hl.on("hyprland.start", function()
