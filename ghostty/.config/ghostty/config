@@ -18,6 +18,7 @@ window-padding-balance = true
 scrollbar = never
 
 #MISC
+quit-after-last-window-closed = false
 mouse-hide-while-typing = true
 
 #KEYS
