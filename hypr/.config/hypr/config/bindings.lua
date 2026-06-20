@@ -19,18 +19,6 @@ MAIN_BIND("SHIFT + Y", hl.dsp.exec_cmd('grim -g "$(slurp)" - | wl-copy'))
 
 MAIN_BIND("W", hl.dsp.exec_cmd("killall -SIGUSR1 waybar"))
 
---Zen fuzzy tab switcher
-hl.bind("ALT + T", function()
-	local focused = hl.get_active_window()
-	if focused and focused.class and focused.class:find("zen") then
-		DSP(hl.dsp.send_shortcut({ mods = "CTRL", key = "L" }))
-		hl.timer(function()
-			DSP(hl.dsp.send_shortcut({ mods = "SHIFT", key = "5" }))
-			DSP(hl.dsp.send_shortcut({ mods = "", key = "SPACE" }))
-		end, { type = "oneshot", timeout = 50 })
-	end
-end)
-
 MAIN_BIND("K", hl.dsp.focus({ direction = "up" }))
 MAIN_BIND("L", hl.dsp.focus({ direction = "right" }))
 MAIN_BIND("J", hl.dsp.focus({ direction = "down" }))

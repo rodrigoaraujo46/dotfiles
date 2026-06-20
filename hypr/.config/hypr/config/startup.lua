@@ -11,7 +11,6 @@ end
 hl.on("hyprland.start", function()
 	uwsm_service("waybar")
 	uwsm_service("walker --gapplication-service")
-	uwsm_service("mako")
 	uwsm_service("hyprpaper")
 	uwsm_scope(TERMINAL, { workspace = "1 silent" })
 	uwsm_scope("spotify-launcher", { workspace = "2 silent" })
